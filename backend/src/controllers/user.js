@@ -1,4 +1,3 @@
-// registrationUser.js
 const registrationUser = async (req, res) => {
     const {
         email,

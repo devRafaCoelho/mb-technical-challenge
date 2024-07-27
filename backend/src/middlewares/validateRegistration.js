@@ -15,7 +15,6 @@ const validateRegistration = (req, res, next) => {
     } = req.body;
 
     try {
-        // Validação do e-mail
         if (!email) {
             return res.status(400).json({ error: 'Email is required' });
         }
@@ -24,7 +23,6 @@ const validateRegistration = (req, res, next) => {
             return res.status(400).json({ error: 'Invalid email format' });
         }
 
-        // Validação do tipo de cadastro
         if (!type) {
             return res.status(400).json({ error: 'Type is required' });
         }
