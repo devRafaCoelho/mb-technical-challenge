@@ -32,8 +32,20 @@ const validateRegistration = (req, res, next) => {
         }
 
         if (type === 'PF') {
-            if (!name || !cpf || !birthDate || !phone) {
-                return res.status(400).json({ error: 'All fields are required for PF' });
+            if (!name) {
+                return res.status(400).json({ error: 'Name is required' });
+            }
+
+            if (!cpf) {
+                return res.status(400).json({ error: 'CPF is required' });
+            }
+
+            if (!birthDate) {
+                return res.status(400).json({ error: 'Birth Date is required' });
+            }
+
+            if (!phone) {
+                return res.status(400).json({ error: 'Phone is required' });
             }
 
             if (!/^\d{11}$/.test(cpf)) {
@@ -48,8 +60,20 @@ const validateRegistration = (req, res, next) => {
                 return res.status(400).json({ error: 'Invalid phone number format' });
             }
         } else if (type === 'PJ') {
-            if (!companyName || !cnpj || !openingDate || !phone) {
-                return res.status(400).json({ error: 'All fields are required for PJ' });
+            if (!companyName) {
+                return res.status(400).json({ error: 'Company Name is required' });
+            }
+
+            if (!cnpj) {
+                return res.status(400).json({ error: 'CNPJ is required' });
+            }
+
+            if (!openingDate) {
+                return res.status(400).json({ error: 'Opening Date is required' });
+            }
+
+            if (!phone) {
+                return res.status(400).json({ error: 'Phone is required' });
             }
 
             if (!/^\d{14}$/.test(cnpj)) {
