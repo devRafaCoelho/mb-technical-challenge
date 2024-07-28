@@ -45,6 +45,23 @@ export default {
     },
     handleFormSubmit(response) {
       console.log(response);
+      this.resetForm();
+      this.goToStep(1);
+    },
+    resetForm() {
+      this.formData = {
+        email: '',
+        registrationType: '',
+        name: '',
+        cpf: '',
+        birthDate: '',
+        cpfPhone: '',
+        companyName: '',
+        cnpj: '',
+        openingDate: '',
+        cnpjPhone: '',
+        password: ''
+      };
     }
   }
 };

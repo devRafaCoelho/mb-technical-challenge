@@ -28,9 +28,9 @@ export default {
             if (field === 'password') {
                 const password = this.formData.password;
                 if (!password) {
-                    this.errors.password = 'Password is required';
+                    this.errors.password = 'A Senha é obrigatória';
                 } else if (!/^.{5,}$/.test(password)) {
-                    this.errors.password = 'Password must be at least 5 characters long';
+                    this.errors.password = 'A Senha deve conter no mínimo 5 caracteres';
                 } else {
                     this.errors.password = '';
                 }

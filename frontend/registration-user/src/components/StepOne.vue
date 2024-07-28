@@ -37,9 +37,9 @@ export default {
         validateInput(field) {
             if (field === 'email') {
                 if (!this.formData.email) {
-                    this.errors.email = 'Email is required';
+                    this.errors.email = 'O E-mail é obrigatório';
                 } else if (!/^\S+@\S+\.\S+$/.test(this.formData.email)) {
-                    this.errors.email = 'Invalid email format';
+                    this.errors.email = 'E-mail inválido';
                 } else {
                     this.errors.email = '';
                 }
@@ -49,10 +49,10 @@ export default {
             let valid = true;
 
             if (!this.formData.email) {
-                this.errors.email = 'Email is required';
+                this.errors.email = 'O E-mail é obrigatório';
                 valid = false;
             } else if (!/^\S+@\S+\.\S+$/.test(this.formData.email)) {
-                this.errors.email = 'Invalid email format';
+                this.errors.email = 'E-mail inválido';
                 valid = false;
             }
 
