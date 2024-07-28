@@ -7,10 +7,11 @@ const validateRegistration = (req, res, next) => {
         name,
         cpf,
         birthDate,
-        phone,
+        cpfPhone,
         companyName,
         cnpj,
         openingDate,
+        cnpjPhone,
         password
     } = req.body;
 
@@ -44,7 +45,7 @@ const validateRegistration = (req, res, next) => {
                 return res.status(400).json({ error: 'Birth Date is required' });
             }
 
-            if (!phone) {
+            if (!cpfPhone) {
                 return res.status(400).json({ error: 'Phone is required' });
             }
 
@@ -56,7 +57,7 @@ const validateRegistration = (req, res, next) => {
                 return res.status(400).json({ error: 'Invalid date of birth format' });
             }
 
-            if (!/^\d{11}$/.test(phone)) {
+            if (!/^\d{11}$/.test(cpfPhone)) {
                 return res.status(400).json({ error: 'Invalid phone number format' });
             }
         } else if (type === 'PJ') {
@@ -72,7 +73,7 @@ const validateRegistration = (req, res, next) => {
                 return res.status(400).json({ error: 'Opening Date is required' });
             }
 
-            if (!phone) {
+            if (!cnpjPhone) {
                 return res.status(400).json({ error: 'Phone is required' });
             }
 
@@ -84,7 +85,7 @@ const validateRegistration = (req, res, next) => {
                 return res.status(400).json({ error: 'Invalid opening date format' });
             }
 
-            if (!/^\d{11}$/.test(phone)) {
+            if (!/^\d{11}$/.test(cnpjPhone)) {
                 return res.status(400).json({ error: 'Invalid phone number format' });
             }
         }
