@@ -1,24 +1,25 @@
 <template>
-    <div>
-        <h2>Passo 1: Informações Iniciais</h2>
+    <div class="main-container">
+        <h4 class="step-title">Etapa <span class="step-number">1</span> de 4</h4>
+        <h1 class="welcome-text">Seja bem vindo(a)</h1>
         <form @submit.prevent="validateStepOne">
-            <div>
-                <label for="email">Email:</label>
-                <input type="text" v-model="formData.email" @input="validateInput('email')" />
+            <div class="input-container">
+                <label class="label-input" for="email">E-mail:</label>
+                <input class="input-text" type="text" v-model="formData.email" @input="validateInput('email')" />
                 <span v-if="errors.email" class="error-message">{{ errors.email }}</span>
             </div>
-            <div>
-                <label>Tipo de Cadastro:</label>
-                <div>
+            <div class="input-container">
+                <label class="label-input">Tipo de Cadastro:</label>
+                <div class="radio-input-container">
                     <input type="radio" id="pf" value="PF" v-model="formData.registrationType" />
                     <label for="pf">Pessoa Física</label>
                 </div>
-                <div>
+                <div class="radio-input-container">
                     <input type="radio" id="pj" value="PJ" v-model="formData.registrationType" />
                     <label for="pj">Pessoa Jurídica</label>
                 </div>
             </div>
-            <button type="submit">Continuar</button>
+            <button class="contained-button" type="submit">Continuar</button>
         </form>
     </div>
 </template>
@@ -80,8 +81,42 @@ export default {
 </script>
 
 <style>
-.error-message {
-    color: red;
-    font-size: 12px;
+.radio-input-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+input[type="radio"] {
+    all: unset;
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ef4723;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+input[type="radio"]::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.2s;
+}
+
+input[type="radio"]:checked::before {
+    background-color: #ef4723;
+}
+
+.contained-button {
+    width: 100%;
 }
 </style>
