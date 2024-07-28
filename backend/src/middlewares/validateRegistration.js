@@ -3,7 +3,7 @@ const phoneRegex = /^(\+\d{1,3}[- ]?)?\(?\d{2,3}\)?[- ]?\d{4,5}[- ]?\d{4}$/;
 const validateRegistration = (req, res, next) => {
     const {
         email,
-        type,
+        registrationType,
         name,
         cpf,
         birthDate,
@@ -24,15 +24,15 @@ const validateRegistration = (req, res, next) => {
             return res.status(400).json({ error: 'Invalid email format' });
         }
 
-        if (!type) {
-            return res.status(400).json({ error: 'Type is required' });
+        if (!registrationType) {
+            return res.status(400).json({ error: 'registrationType is required' });
         }
 
-        if (type !== 'PF' && type !== 'PJ') {
-            return res.status(400).json({ error: 'Invalid type of registration' });
+        if (registrationType !== 'PF' && registrationType !== 'PJ') {
+            return res.status(400).json({ error: 'Invalid registrationType of registration' });
         }
 
-        if (type === 'PF') {
+        if (registrationType === 'PF') {
             if (!name) {
                 return res.status(400).json({ error: 'Name is required' });
             }
@@ -60,7 +60,7 @@ const validateRegistration = (req, res, next) => {
             if (!/^\d{11}$/.test(cpfPhone)) {
                 return res.status(400).json({ error: 'Invalid phone number format' });
             }
-        } else if (type === 'PJ') {
+        } else if (registrationType === 'PJ') {
             if (!companyName) {
                 return res.status(400).json({ error: 'Company Name is required' });
             }

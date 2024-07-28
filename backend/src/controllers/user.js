@@ -1,7 +1,7 @@
 const registrationUser = async (req, res) => {
     const {
         email,
-        type,
+        registrationType,
         name,
         cpf,
         birthDate,
