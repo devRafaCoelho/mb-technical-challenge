@@ -56,7 +56,7 @@ const validateRegistration = (req, res, next) => {
                 return res.status(400).json({ error: 'Invalid date of birth format' });
             }
 
-            if (!phone || !phoneRegex.test(phone)) {
+            if (!/^\d{11}$/.test(phone)) {
                 return res.status(400).json({ error: 'Invalid phone number format' });
             }
         } else if (type === 'PJ') {
@@ -84,13 +84,17 @@ const validateRegistration = (req, res, next) => {
                 return res.status(400).json({ error: 'Invalid opening date format' });
             }
 
-            if (!phone || !phoneRegex.test(phone)) {
+            if (!/^\d{11}$/.test(phone)) {
                 return res.status(400).json({ error: 'Invalid phone number format' });
             }
         }
 
         if (!password) {
             return res.status(400).json({ error: 'Password is required' });
+        }
+
+        if (!/^.{5,}$/.test(password)) {
+            return res.status(400).json({ error: 'Invalid password' });
         }
 
         next();
