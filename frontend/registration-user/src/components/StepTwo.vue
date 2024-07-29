@@ -3,49 +3,36 @@
         <h2>Passo 2: Detalhes do Cadastro</h2>
         <form @submit.prevent="validateStepTwo">
             <div v-if="formData.registrationType === 'PF'">
-                <div>
-                    <InputField label="Nome" id="name" type="text" v-model="formData.name" :errorMessage="errors.name"
-                        @input="validateInput('name', 'letters')" />
-                </div>
-                <div>
-                    <label for="cpf">CPF:</label>
-                    <input type="text" v-model="formData.cpf" @input="validateInput('cpf', 'numbers', 11)" />
-                    <span v-if="errors.cpf" class="error-message">{{ errors.cpf }}</span>
-                </div>
-                <div>
-                    <label for="birthDate">Data de Nascimento:</label>
-                    <input type="date" v-model="formData.birthDate" @input="validateInput('birthDate')" />
-                    <span v-if="errors.birthDate" class="error-message">{{ errors.birthDate }}</span>
-                </div>
-                <div>
-                    <label for="cpfPhone">Número de Telefone:</label>
-                    <input type="text" v-model="formData.cpfPhone" @input="validateInput('cpfPhone', 'numbers', 11)" />
-                    <span v-if="errors.cpfPhone" class="error-message">{{ errors.cpfPhone }}</span>
-                </div>
+                <InputField label="Nome" id="name" type="text" v-model="formData.name" :errorMessage="errors.name"
+                    @input="validateInput('name', 'letters')" />
+
+
+                <InputField label="CPF" id="cpf" type="text" v-model="formData.cpf" :errorMessage="errors.cpf"
+                    @input="validateInput('cpf', 'numbers', 11)" />
+
+
+                <InputField label="Data de Nascimento" id="birthDate" type="date" v-model="formData.birthDate"
+                    :errorMessage="errors.birthDate" @input="validateInput('birthDate')" />
+
+
+                <InputField label="Número de Telefone" id="cpfPhone" type="text" v-model="formData.cpfPhone"
+                    :errorMessage="errors.cpfPhone" @input="validateInput('cpfPhone', 'numbers', 11)" />
             </div>
             <div v-if="formData.registrationType === 'PJ'">
-                <div>
-                    <label for="companyName">Razão Social:</label>
-                    <input type="text" v-model="formData.companyName"
-                        @input="validateInput('companyName', 'letters')" />
-                    <span v-if="errors.companyName" class="error-message">{{ errors.companyName }}</span>
-                </div>
-                <div>
-                    <label for="cnpj">CNPJ:</label>
-                    <input type="text" v-model="formData.cnpj" @input="validateInput('cnpj', 'numbers', 14)" />
-                    <span v-if="errors.cnpj" class="error-message">{{ errors.cnpj }}</span>
-                </div>
-                <div>
-                    <label for="openingDate">Data de Abertura:</label>
-                    <input type="date" v-model="formData.openingDate" @input="validateInput('openingDate')" />
-                    <span v-if="errors.openingDate" class="error-message">{{ errors.openingDate }}</span>
-                </div>
-                <div>
-                    <label for="cnpjPhone">Número de Telefone:</label>
-                    <input type="text" v-model="formData.cnpjPhone"
-                        @input="validateInput('cnpjPhone', 'numbers', 11)" />
-                    <span v-if="errors.cnpjPhone" class="error-message">{{ errors.cnpjPhone }}</span>
-                </div>
+                <InputField label="Razão Social" id="companyName" type="text" v-model="formData.companyName"
+                    :errorMessage="errors.companyName" @input="validateInput('companyName', 'letters')" />
+
+
+                <InputField label="CNPJ" id="cnpj" type="text" v-model="formData.cnpj" :errorMessage="errors.cnpj"
+                    @input="validateInput('cnpj', 'numbers', 14)" />
+
+
+                <InputField label="Data de Abertura" id="openingDate" type="date" v-model="formData.openingDate"
+                    :errorMessage="errors.openingDate" @input="validateInput('openingDate')" />
+
+
+                <InputField label="Número de Telefone" id="cnpjPhone" type="text" v-model="formData.cnpjPhone"
+                    :errorMessage="errors.cnpjPhone" @input="validateInput('cnpjPhone', 'numbers', 11)" />
             </div>
             <button type="button" @click="$emit('prev')">Voltar</button>
             <button type="submit">Continuar</button>
@@ -99,7 +86,7 @@ export default {
                         break;
                     case 'cpf':
                         if (!this.formData.cpf) {
-                            error = 'CPF é obrigatório';
+                            error = 'O CPF é obrigatório';
                         } else if (!/^\d{11}$/.test(this.formData.cpf)) {
                             error = 'CPF inválido';
                         }
