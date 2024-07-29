@@ -4,9 +4,8 @@
         <form @submit.prevent="validateStepTwo">
             <div v-if="formData.registrationType === 'PF'">
                 <div>
-                    <label for="name">Nome:</label>
-                    <input type="text" v-model="formData.name" @input="validateInput('name', 'letters')" />
-                    <span v-if="errors.name" class="error-message">{{ errors.name }}</span>
+                    <InputField label="Nome" id="name" type="text" v-model="formData.name" :errorMessage="errors.name"
+                        @input="validateInput('name', 'letters')" />
                 </div>
                 <div>
                     <label for="cpf">CPF:</label>
@@ -50,12 +49,18 @@
             </div>
             <button type="button" @click="$emit('prev')">Voltar</button>
             <button type="submit">Continuar</button>
+
         </form>
     </div>
 </template>
 
 <script>
+import InputField from './InputField.vue';
+
 export default {
+    components: {
+        InputField
+    },
     props: ['formData'],
     data() {
         return {
@@ -176,10 +181,3 @@ export default {
     }
 };
 </script>
-
-<style>
-.error-message {
-    color: red;
-    font-size: 12px;
-}
-</style>
