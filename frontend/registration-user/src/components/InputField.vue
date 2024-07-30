@@ -58,9 +58,16 @@ export default {
     color: #1d2327;
 }
 
+.input-text:focus {
+    border: 2px solid #ef4723;
+}
+
+.input-text:hover {
+    border-color: #ef4723;
+}
+
 .input-disabled {
     background-color: #d1cfcf;
-
 }
 
 .error-message {

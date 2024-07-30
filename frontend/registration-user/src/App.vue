@@ -5,6 +5,7 @@
       :registrationType="formData.registrationType" />
     <StepThree v-if="step === 3" @prev="goToStep(2)" @next="goToStep(4)" :formData="formData" />
     <StepFour v-if="step === 4" @prev="goToStep(3)" @submit="handleFormSubmit" :formData="formData" />
+    <Toast ref="toast" message="Dados cadastrados com sucesso!" />
   </div>
 </template>
 
@@ -13,13 +14,15 @@ import StepOne from './components/StepOne.vue';
 import StepTwo from './components/StepTwo.vue';
 import StepThree from './components/StepThree.vue';
 import StepFour from './components/StepFour.vue';
+import Toast from './components/Toast.vue';
 
 export default {
   components: {
     StepOne,
     StepTwo,
     StepThree,
-    StepFour
+    StepFour,
+    Toast
   },
   data() {
     return {
@@ -45,8 +48,12 @@ export default {
     },
     handleFormSubmit(response) {
       console.log(response);
+      this.showToast();
       this.resetForm();
       this.goToStep(1);
+    },
+    showToast() {
+      this.$refs.toast.show();
     },
     resetForm() {
       this.formData = {
