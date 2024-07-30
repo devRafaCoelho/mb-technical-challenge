@@ -1,5 +1,5 @@
 <template>
-    <button :class="buttonClass" @click="$emit('click')">
+    <button :class="buttonClass" @click="$emit('click')" :type="type">
         {{ text }}
     </button>
 </template>
@@ -23,6 +23,13 @@ export default {
             default: '100%',
             validator(value) {
                 return ['100%', '50%'].includes(value);
+            }
+        },
+        type: {
+            type: String,
+            default: 'submit',
+            validator(value) {
+                return ['button', 'submit'].includes(value);
             }
         }
     },

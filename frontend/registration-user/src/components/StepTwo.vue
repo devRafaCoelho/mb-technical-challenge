@@ -35,8 +35,8 @@
                     :errorMessage="errors.cnpjPhone" @input="validateInput('cnpjPhone', 'numbers', 11)" />
             </div>
             <div class="button-wrapper">
-                <CustomButton variant="outlined" text="Voltar" width="50%" @click="$emit('prev')" />
-                <CustomButton text="Continuar" width="50%" @click="validateStepOne" />
+                <CustomButton variant="outlined" text="Voltar" width="50%" @click="$emit('prev')" type="button" />
+                <CustomButton text="Continuar" width="50%" type="submit" />
             </div>
         </form>
     </div>

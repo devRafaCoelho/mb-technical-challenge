@@ -11,7 +11,7 @@
                     <InputRadio id="pj" value="PJ" v-model="formData.registrationType" label="Pessoa Jurídica" />
                 </div>
             </div>
-            <CustomButton text="Continuar" :onClick="validateStepOne" />
+            <CustomButton text="Continuar" type="submit" />
         </form>
     </div>
 </template>
