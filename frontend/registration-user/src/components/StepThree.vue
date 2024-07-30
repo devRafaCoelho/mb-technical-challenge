@@ -1,20 +1,29 @@
 <template>
-    <div>
-        <h2>Passo 3: Criação de Senha</h2>
+    <div class="main-container">
+        <StepTitle stepNumber="3" text="Senha de Acesso" />
         <form @submit.prevent="validateStepThree">
-            <div>
-                <label for="password">Senha:</label>
-                <input type="password" v-model="formData.password" @input="validateInput('password')" />
-                <span v-if="errors.password" class="error-message">{{ errors.password }}</span>
+            <InputField label="Senha" id="password" type="text" v-model="formData.password"
+                :errorMessage="errors.password" @input="validateInput('password')" />
+
+            <div class="button-wrapper">
+                <CustomButton variant="outlined" text="Voltar" width="50%" @click="$emit('prev')" />
+                <CustomButton text="Continuar" width="50%" @click="validateStepThree" />
             </div>
-            <button type="button" @click="$emit('prev')">Voltar</button>
-            <button type="submit">Continuar</button>
         </form>
     </div>
 </template>
 
 <script>
+import CustomButton from './CustomButton.vue';
+import InputField from './InputField.vue';
+import StepTitle from './StepTitle.vue';
+
 export default {
+    components: {
+        StepTitle,
+        InputField,
+        CustomButton
+    },
     props: ['formData'],
     data() {
         return {

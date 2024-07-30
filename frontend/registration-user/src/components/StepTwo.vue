@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h2>Passo 2: Detalhes do Cadastro</h2>
+    <div class="main-container">
+        <StepTitle :stepNumber="2" :text="stepTitleText" />
         <form @submit.prevent="validateStepTwo">
             <div v-if="formData.registrationType === 'PF'">
                 <InputField label="Nome" id="name" type="text" v-model="formData.name" :errorMessage="errors.name"
@@ -34,18 +34,24 @@
                 <InputField label="Número de Telefone" id="cnpjPhone" type="text" v-model="formData.cnpjPhone"
                     :errorMessage="errors.cnpjPhone" @input="validateInput('cnpjPhone', 'numbers', 11)" />
             </div>
-            <button type="button" @click="$emit('prev')">Voltar</button>
-            <button type="submit">Continuar</button>
+            <div class="button-wrapper">
+                <CustomButton variant="outlined" text="Voltar" width="50%" @click="$emit('prev')" />
+                <CustomButton text="Continuar" width="50%" @click="validateStepOne" />
+            </div>
         </form>
     </div>
 </template>
 
 <script>
+import CustomButton from './CustomButton.vue';
 import InputField from './InputField.vue';
+import StepTitle from './StepTitle.vue';
 
 export default {
     components: {
-        InputField
+        StepTitle,
+        InputField,
+        CustomButton
     },
     props: ['formData'],
     data() {
@@ -61,6 +67,11 @@ export default {
                 cnpjPhone: ''
             }
         };
+    },
+    computed: {
+        stepTitleText() {
+            return this.formData.registrationType === 'PF' ? 'Pessoa Física' : 'Pessoa Jurídica';
+        }
     },
     methods: {
         validateInput(field, type = '', maxLength = 0) {

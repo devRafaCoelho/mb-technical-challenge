@@ -40,18 +40,6 @@ export default {
 </script>
 
 <style scoped>
-.input-container {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-}
-
-.label-input {
-    font-weight: 600;
-}
-
 .input-text {
     all: unset;
     box-sizing: border-box;
