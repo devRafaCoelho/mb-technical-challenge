@@ -36,7 +36,6 @@
             </div>
             <button type="button" @click="$emit('prev')">Voltar</button>
             <button type="submit">Continuar</button>
-
         </form>
     </div>
 </template>

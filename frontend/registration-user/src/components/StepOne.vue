@@ -3,11 +3,8 @@
         <h4 class="step-title">Etapa <span class="step-number">1</span> de 4</h4>
         <h1 class="welcome-text">Seja bem vindo(a)</h1>
         <form @submit.prevent="validateStepOne">
-            <div class="input-container">
-                <label class="label-input" for="email">E-mail:</label>
-                <input class="input-text" type="text" v-model="formData.email" @input="validateInput('email')" />
-                <span v-if="errors.email" class="error-message">{{ errors.email }}</span>
-            </div>
+            <InputField label="E-mail" id="email" type="text" v-model="formData.email" :errorMessage="errors.email"
+                @input="validateInput('email')" />
             <div class="input-container">
                 <label class="label-input">Tipo de Cadastro:</label>
                 <div class="radio-input-container">
@@ -25,7 +22,12 @@
 </template>
 
 <script>
+import InputField from './InputField.vue';
+
 export default {
+    components: {
+        InputField
+    },
     props: ['formData'],
     data() {
         return {
@@ -37,9 +39,10 @@ export default {
     methods: {
         validateInput(field) {
             if (field === 'email') {
-                if (!this.formData.email) {
+                const email = this.formData.email.trim();
+                if (!email) {
                     this.errors.email = 'O E-mail é obrigatório';
-                } else if (!/^\S+@\S+\.\S+$/.test(this.formData.email)) {
+                } else if (!/^\S+@\S+\.\S+$/.test(email)) {
                     this.errors.email = 'E-mail inválido';
                 } else {
                     this.errors.email = '';
@@ -47,20 +50,11 @@ export default {
             }
         },
         validateStepOne() {
-            let valid = true;
-
-            if (!this.formData.email) {
-                this.errors.email = 'O E-mail é obrigatório';
-                valid = false;
-            } else if (!/^\S+@\S+\.\S+$/.test(this.formData.email)) {
-                this.errors.email = 'E-mail inválido';
-                valid = false;
-            }
-
-            if (valid) {
+            this.validateInput('email');
+            if (!this.errors.email) {
                 this.$emit('next');
             }
-        }
+        },
     },
     watch: {
         formData: {
