@@ -2,18 +2,16 @@
     <div class="main-container">
         <StepTitle stepNumber="1" text="Seja bem vindo(a)" />
         <form @submit.prevent="validateStepOne">
-            <InputField label="E-mail" id="email" type="text" v-model="formData.email" :errorMessage="errors.email"
-                @input="validateInput('email')" />
+            <InputField label="Endereço de e-mail" id="email" type="text" v-model="formData.email"
+                :errorMessage="errors.email" @input="validateInput('email')" />
             <div class="input-container">
                 <label class="label-input">Tipo de Cadastro:</label>
                 <div class="radio-wrapper">
-                    <InputRadio id="pf" value="PF" v-model:modelValue="formData.registrationType"
-                        label="Pessoa Física" />
-                    <InputRadio id="pj" value="PJ" v-model:modelValue="formData.registrationType"
-                        label="Pessoa Jurídica" />
+                    <InputRadio id="pf" value="PF" v-model="formData.registrationType" label="Pessoa Física" />
+                    <InputRadio id="pj" value="PJ" v-model="formData.registrationType" label="Pessoa Jurídica" />
                 </div>
             </div>
-            <CustomButton text="Continuar" @click="validateStepOne" />
+            <CustomButton text="Continuar" :onClick="validateStepOne" />
         </form>
     </div>
 </template>
@@ -82,9 +80,5 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 3px;
-}
-
-.contained-button {
-    width: 100%;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="main-container">
-        <StepTitle :stepNumber="2" :text="stepTitleText" />
+        <StepTitle stepNumber="2" :text="stepTitleText" />
         <form @submit.prevent="validateStepTwo">
             <div v-if="formData.registrationType === 'PF'">
                 <InputField label="Nome" id="name" type="text" v-model="formData.name" :errorMessage="errors.name"

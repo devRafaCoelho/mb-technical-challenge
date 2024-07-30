@@ -1,14 +1,15 @@
 <template>
     <div class="input-container">
         <label :for="id" class="label-input">{{ label }}</label>
-        <input :type="type" :id="id" :value="modelValue" @input="onInput" class="input-text" />
+        <input :type="type" :id="id" :value="modelValue" @input="onInput" class="input-text"
+            :class="{ 'input-disabled': disabled }" :disabled="disabled" />
         <span v-if="errorMessage" class="error-message">{{ errorMessage }}</span>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'InputField',
+    name: "InputField",
     props: {
         label: {
             type: String,
@@ -28,14 +29,20 @@ export default {
         },
         errorMessage: {
             type: String,
-            default: '',
+            default: "",
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         }
     },
     methods: {
         onInput(event) {
-            this.$emit('update:modelValue', event.target.value);
+            if (!this.disabled) {
+                this.$emit('update:modelValue', event.target.value);
+            }
         }
-    }
+    },
 };
 </script>
 
@@ -49,6 +56,11 @@ export default {
     border: 1px solid #1d2327;
     border-radius: 5px;
     color: #1d2327;
+}
+
+.input-disabled {
+    background-color: #d1cfcf;
+
 }
 
 .error-message {

@@ -2,7 +2,7 @@
     <div class="main-container">
         <StepTitle stepNumber="3" text="Senha de Acesso" />
         <form @submit.prevent="validateStepThree">
-            <InputField label="Senha" id="password" type="text" v-model="formData.password"
+            <InputField label="Senha" id="password" type="password" v-model="formData.password"
                 :errorMessage="errors.password" @input="validateInput('password')" />
 
             <div class="button-wrapper">
@@ -54,10 +54,3 @@ export default {
     }
 };
 </script>
-
-<style>
-.error-message {
-    color: red;
-    font-size: 12px;
-}
-</style>
