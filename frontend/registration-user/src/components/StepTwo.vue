@@ -3,7 +3,7 @@
     <StepTitle stepNumber="2" :text="stepTitleText" />
     <form @submit.prevent="validateStepTwo">
       <div v-if="formData.registrationType === 'PF'">
-        <InputField
+        <TextField
           label="Nome"
           id="name"
           type="text"
@@ -12,7 +12,7 @@
           @input="validateInput('name', 'letters')"
         />
 
-        <InputField
+        <TextField
           label="CPF"
           id="cpf"
           type="text"
@@ -21,7 +21,7 @@
           @input="validateInput('cpf', 'numbers', 11)"
         />
 
-        <InputField
+        <TextField
           label="Data de Nascimento"
           id="birthDate"
           type="date"
@@ -30,7 +30,7 @@
           @input="validateInput('birthDate')"
         />
 
-        <InputField
+        <TextField
           label="Número de Telefone"
           id="cpfPhone"
           type="text"
@@ -40,7 +40,7 @@
         />
       </div>
       <div v-if="formData.registrationType === 'PJ'">
-        <InputField
+        <TextField
           label="Razão Social"
           id="companyName"
           type="text"
@@ -49,7 +49,7 @@
           @input="validateInput('companyName', 'letters')"
         />
 
-        <InputField
+        <TextField
           label="CNPJ"
           id="cnpj"
           type="text"
@@ -58,7 +58,7 @@
           @input="validateInput('cnpj', 'numbers', 14)"
         />
 
-        <InputField
+        <TextField
           label="Data de Abertura"
           id="openingDate"
           type="date"
@@ -67,7 +67,7 @@
           @input="validateInput('openingDate')"
         />
 
-        <InputField
+        <TextField
           label="Número de Telefone"
           id="cnpjPhone"
           type="text"
@@ -92,13 +92,13 @@
 
 <script>
 import CustomButton from "./CustomButton.vue";
-import InputField from "./InputField.vue";
+import TextField from "./TextField.vue";
 import StepTitle from "./StepTitle.vue";
 
 export default {
   components: {
     StepTitle,
-    InputField,
+    TextField,
     CustomButton,
   },
   props: ["formData"],

@@ -2,7 +2,7 @@
   <div class="main-container">
     <StepTitle stepNumber="4" text="Revise suas Informações" />
 
-    <InputField
+    <TextField
       label="Endereço de e-mail"
       id="email"
       type="text"
@@ -12,7 +12,7 @@
     />
 
     <div v-if="formData.registrationType === 'PF'">
-      <InputField
+      <TextField
         label="Nome"
         id="name"
         type="text"
@@ -20,7 +20,7 @@
         :errorMessage="''"
         :disabled="true"
       />
-      <InputField
+      <TextField
         label="CPF"
         id="cpf"
         type="text"
@@ -28,15 +28,15 @@
         :errorMessage="''"
         :disabled="true"
       />
-      <InputField
+      <TextField
         label="Data de Nascimento"
         id="birthDate"
-        type="text"
+        type="date"
         :modelValue="formData.birthDate"
         :errorMessage="''"
         :disabled="true"
       />
-      <InputField
+      <TextField
         label="Telefone"
         id="cpfPhone"
         type="text"
@@ -47,7 +47,7 @@
     </div>
 
     <div v-else>
-      <InputField
+      <TextField
         label="Razão Social"
         id="companyName"
         type="text"
@@ -55,7 +55,7 @@
         :errorMessage="''"
         :disabled="true"
       />
-      <InputField
+      <TextField
         label="CNPJ"
         id="cnpj"
         type="text"
@@ -63,15 +63,15 @@
         :errorMessage="''"
         :disabled="true"
       />
-      <InputField
+      <TextField
         label="Data de Abertura"
         id="openingDate"
-        type="text"
+        type="date"
         :modelValue="formData.openingDate"
         :errorMessage="''"
         :disabled="true"
       />
-      <InputField
+      <TextField
         label="Telefone"
         id="cnpjPhone"
         type="text"
@@ -81,7 +81,7 @@
       />
     </div>
 
-    <InputField
+    <TextField
       label="Senha"
       id="password"
       type="text"
@@ -105,13 +105,13 @@
 <script>
 import { registrationUser } from "@/services/api";
 import StepTitle from "./StepTitle.vue";
-import InputField from "./InputField.vue";
+import TextField from "./TextField.vue";
 import CustomButton from "./CustomButton.vue";
 
 export default {
   components: {
     StepTitle,
-    InputField,
+    TextField,
     CustomButton,
   },
   props: ["formData"],

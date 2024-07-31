@@ -1,7 +1,7 @@
 <template>
   <div class="input-container">
     <label :for="id" class="label-input">{{ label }}</label>
-    <div class="password-container">
+    <div v-if="isPasswordField" class="password-container">
       <input
         :type="inputType"
         :id="id"
@@ -15,15 +15,30 @@
         <i :class="iconClass"></i>
       </span>
     </div>
+    <div v-else class="wrapper-input">
+      <input
+        :type="type"
+        :id="id"
+        :value="modelValue"
+        @input="onInput"
+        class="input-text"
+        :class="{ 'input-disabled': disabled }"
+        :disabled="disabled"
+      />
+    </div>
     <span v-if="errorMessage" class="error-message">{{ errorMessage }}</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: "PasswordField",
+  name: "TextField",
   props: {
     label: {
+      type: String,
+      required: true,
+    },
+    type: {
       type: String,
       required: true,
     },
@@ -50,8 +65,11 @@ export default {
     };
   },
   computed: {
+    isPasswordField() {
+      return this.type === "password";
+    },
     inputType() {
-      return this.showPassword ? "text" : "password";
+      return this.isPasswordField && this.showPassword ? "text" : this.type;
     },
     iconClass() {
       return this.showPassword ? "fa fa-eye-slash" : "fa fa-eye";
@@ -64,7 +82,9 @@ export default {
       }
     },
     toggleVisibility() {
-      this.showPassword = !this.showPassword;
+      if (this.isPasswordField) {
+        this.showPassword = !this.showPassword;
+      }
     },
   },
 };
@@ -85,8 +105,12 @@ export default {
 }
 
 .password-toggle-icon i {
-  font-size: 20px;
+  font-size: 14px;
   color: #1d2327;
+}
+
+.wrapper-input {
+  width: 100%;
 }
 
 .input-text {
@@ -94,7 +118,7 @@ export default {
   box-sizing: border-box;
   width: 100%;
   min-height: 48px;
-  padding: 5px 40px 5px 10px; /* adjust padding for icon */
+  padding: 5px 10px;
   border: 1px solid #1d2327;
   border-radius: 5px;
   color: #1d2327;
@@ -116,5 +140,9 @@ export default {
   color: red;
   font-size: 12px;
   font-weight: 500;
+}
+
+.password-container .input-text {
+  padding-right: 40px;
 }
 </style>
