@@ -56,10 +56,12 @@ export default {
   methods: {
     validateInput(field) {
       if (field === "email") {
+        const emailRegex = /^\S+@\S+\.\S+$/;
         const email = this.formData.email.trim();
+
         if (!email) {
           this.errors.email = "O E-mail é obrigatório";
-        } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+        } else if (!emailRegex.test(email)) {
           this.errors.email = "E-mail inválido";
         } else {
           this.errors.email = "";

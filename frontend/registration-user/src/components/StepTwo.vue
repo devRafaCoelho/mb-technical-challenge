@@ -95,6 +95,17 @@ import CustomButton from "./CustomButton.vue";
 import TextField from "./TextField.vue";
 import StepTitle from "./StepTitle.vue";
 
+const initialErrors = {
+  name: "",
+  cpf: "",
+  birthDate: "",
+  cpfPhone: "",
+  companyName: "",
+  cnpj: "",
+  openingDate: "",
+  cnpjPhone: "",
+};
+
 export default {
   components: {
     StepTitle,
@@ -104,16 +115,7 @@ export default {
   props: ["formData"],
   data() {
     return {
-      errors: {
-        name: "",
-        cpf: "",
-        birthDate: "",
-        cpfPhone: "",
-        companyName: "",
-        cnpj: "",
-        openingDate: "",
-        cnpjPhone: "",
-      },
+      errors: { ...initialErrors },
     };
   },
   computed: {
@@ -227,16 +229,7 @@ export default {
     validateStepTwo() {
       let valid = true;
 
-      this.errors = {
-        name: "",
-        cpf: "",
-        birthDate: "",
-        cpfPhone: "",
-        companyName: "",
-        cnpj: "",
-        openingDate: "",
-        cnpjPhone: "",
-      };
+      this.errors = { ...initialErrors };
 
       [
         "name",

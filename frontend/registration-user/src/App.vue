@@ -31,6 +31,20 @@ import StepThree from "./components/StepThree.vue";
 import StepFour from "./components/StepFour.vue";
 import Toast from "./components/Toast.vue";
 
+const defaultFormData = {
+  email: "",
+  registrationType: "",
+  name: "",
+  cpf: "",
+  birthDate: "",
+  cpfPhone: "",
+  companyName: "",
+  cnpj: "",
+  openingDate: "",
+  cnpjPhone: "",
+  password: "",
+};
+
 export default {
   components: {
     StepOne,
@@ -42,19 +56,7 @@ export default {
   data() {
     return {
       step: 1,
-      formData: {
-        email: "",
-        registrationType: "",
-        name: "",
-        cpf: "",
-        birthDate: "",
-        cpfPhone: "",
-        companyName: "",
-        cnpj: "",
-        openingDate: "",
-        cnpjPhone: "",
-        password: "",
-      },
+      formData: { ...defaultFormData },
     };
   },
   methods: {
@@ -73,19 +75,7 @@ export default {
       this.$refs.toast.show();
     },
     resetForm() {
-      this.formData = {
-        email: "",
-        registrationType: "",
-        name: "",
-        cpf: "",
-        birthDate: "",
-        cpfPhone: "",
-        companyName: "",
-        cnpj: "",
-        openingDate: "",
-        cnpjPhone: "",
-        password: "",
-      };
+      this.formData = { ...defaultFormData };
     },
   },
 };

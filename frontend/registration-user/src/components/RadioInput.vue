@@ -43,7 +43,7 @@ export default {
   gap: 5px;
 }
 
-input[type="radio"] {
+.radio-input {
   all: unset;
   box-sizing: border-box;
   width: 16px;
@@ -54,7 +54,7 @@ input[type="radio"] {
   position: relative;
 }
 
-input[type="radio"]::before {
+.radio-input::before {
   content: "";
   display: block;
   width: 10px;
@@ -68,7 +68,7 @@ input[type="radio"]::before {
   transition: background-color 0.2s;
 }
 
-input[type="radio"]:checked::before {
+.radio-input:checked::before {
   background-color: #ef4723;
 }
 </style>

@@ -117,21 +117,13 @@ export default {
   props: ["formData"],
   methods: {
     async submitForm() {
-      if (this.formData.cpf) {
-        this.formData.cpf = this.formData.cpf.replace(/\D/g, "");
-      }
+      const fieldsToClean = ["cpf", "cnpj", "cpfPhone", "cnpjPhone"];
 
-      if (this.formData.cnpj) {
-        this.formData.cnpj = this.formData.cnpj.replace(/\D/g, "");
-      }
-
-      if (this.formData.cpfPhone) {
-        this.formData.cpfPhone = this.formData.cpfPhone.replace(/\D/g, "");
-      }
-
-      if (this.formData.cnpjPhone) {
-        this.formData.cnpjPhone = this.formData.cnpjPhone.replace(/\D/g, "");
-      }
+      fieldsToClean.forEach((field) => {
+        if (this.formData[field]) {
+          this.formData[field] = this.formData[field].replace(/\D/g, "");
+        }
+      });
 
       try {
         const response = await registrationUser(this.formData);

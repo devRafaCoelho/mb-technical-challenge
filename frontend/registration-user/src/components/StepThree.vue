@@ -47,10 +47,12 @@ export default {
   methods: {
     validateInput(field) {
       if (field === "password") {
+        const passwordRegex = /^.{5,}$/;
         const password = this.formData.password;
+
         if (!password) {
           this.errors.password = "A Senha é obrigatória";
-        } else if (!/^.{5,}$/.test(password)) {
+        } else if (!passwordRegex.test(password)) {
           this.errors.password = "A Senha deve conter no mínimo 5 caracteres";
         } else {
           this.errors.password = "";
