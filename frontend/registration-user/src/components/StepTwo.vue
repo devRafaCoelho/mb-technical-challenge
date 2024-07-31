@@ -145,6 +145,7 @@ export default {
             "\$1.\$2.\$3\/\$4\-\$5"
           );
         }
+
         if (field === "cpfPhone" || field === "cnpjPhone") {
           this.formData[field] = this.formData[field].replace(
             /^(\d{2})(\d{5})(\d{4})$/,
