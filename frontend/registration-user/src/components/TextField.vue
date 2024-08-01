@@ -128,7 +128,7 @@ export default {
   border: 2px solid #ef4723;
 }
 
-.input-text:hover {
+.input-text:not(.input-disabled):hover {
   border-color: #ef4723;
 }
 
